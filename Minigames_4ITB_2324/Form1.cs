@@ -7,8 +7,8 @@ namespace Minigames_4ITB_2324
         bool isPlayersTurn = true;
 
         List<Type> minigames = new List<Type>() { 
-            typeof(Circle),
-            typeof(Targets)
+            typeof(Targets),
+            typeof(Circle)
         };
 
         public Form1()
@@ -51,14 +51,28 @@ namespace Minigames_4ITB_2324
             {
                 // Circle, Targets
                 IMinigame m = GetRandomMinigame();
-                m.MinigameEnded += (score) => { };
+                
+                panel1.Controls.Add(m as Control);
+                m.MinigameEnded += (score) => {
+                    playerView2.Hp -= score;
+                    panel1.Controls.Remove(m as Control);
+                    // odebrat minihru pøed loadem nové
+                    SwitchPlayer();
+                };
                 m.StartMinigame();
 
             } else
             {
                 int dmg = new Random().Next(0, 10);
                 playerView1.Hp -= dmg;
+                SwitchPlayer();
             }
+        }
+
+        private void SwitchPlayer()
+        {
+            isPlayersTurn = !isPlayersTurn;
+            StartRound();
         }
 
         private IMinigame GetRandomMinigame()
