@@ -37,6 +37,7 @@
             BackColor = Color.FromArgb(192, 255, 192);
             Name = "Circle";
             Size = new Size(800, 800);
+            Load += Circle_Load;
             ResumeLayout(false);
         }
 

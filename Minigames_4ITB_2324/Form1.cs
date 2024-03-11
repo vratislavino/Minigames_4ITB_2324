@@ -8,7 +8,9 @@ namespace Minigames_4ITB_2324
 
         List<Type> minigames = new List<Type>() { 
             typeof(Targets),
-            typeof(Circle)
+            typeof(Circle),
+            typeof(Sinusoid),
+            typeof(Letters)
         };
 
         public Form1()
@@ -78,7 +80,7 @@ namespace Minigames_4ITB_2324
         private IMinigame GetRandomMinigame()
         {
             Random random = new Random();
-            int r = random.Next(0, minigames.Count);
+            int r = 2;//random.Next(0, minigames.Count);
             var minigame = Activator.CreateInstance(minigames[r]) as IMinigame;
             return minigame;
         }

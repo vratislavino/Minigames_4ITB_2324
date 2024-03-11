@@ -59,9 +59,10 @@ namespace Minigames_4ITB_2324
         private void OnTick(object? sender, EventArgs e)
         {
             currentAngle -= speed;
-            if (currentAngle < 0) { 
+            if (currentAngle < 0)
+            {
                 currentAngle += 360;
-                if(didHit) didHit = false;
+                if (didHit) didHit = false;
                 else
                 {
                     timer.Stop();
@@ -73,11 +74,12 @@ namespace Minigames_4ITB_2324
 
         private void OnKeyDown(object? sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Space) { 
-                if(currentAngle > greenStart && currentAngle < greenStart+greenSize)
+            if (e.KeyCode == Keys.Space)
+            {
+                if (currentAngle > greenStart && currentAngle < greenStart + greenSize)
                 {
                     Score++;
-                    if(Score == 10)
+                    if (Score == 10)
                     {
                         timer.Stop();
                         MinigameEnded?.Invoke(Score);
@@ -86,7 +88,8 @@ namespace Minigames_4ITB_2324
                     speed *= speedMult;
                     greenSize -= 2;
                     GenerateGreen();
-                } else
+                }
+                else
                 {
                     timer.Stop();
                     MinigameEnded?.Invoke(Score);
@@ -107,6 +110,11 @@ namespace Minigames_4ITB_2324
 
 
             e.Graphics.DrawLine(arrowPen, Width / 2, Height / 2, x, y);
+        }
+
+        private void Circle_Load(object sender, EventArgs e)
+        {
+            this.Focus();
         }
     }
 }
