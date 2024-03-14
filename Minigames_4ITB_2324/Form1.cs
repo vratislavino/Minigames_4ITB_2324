@@ -1,4 +1,6 @@
+using System.Reflection;
 using System.Security.Cryptography;
+
 
 namespace Minigames_4ITB_2324
 {
@@ -44,7 +46,25 @@ namespace Minigames_4ITB_2324
             playerView1.SetupPlayerView(true, "Antonín", playerImage);
             playerView2.SetupPlayerView(false, "Android", androidImage);
 
+            // Naètení custom minigame z knihovny
+            LoadMinigameFromDll();
+
             StartRound();
+        }
+
+        private void LoadMinigameFromDll()
+        {
+            string filename = "C:\\Users\\vrati\\source\\repos\\Minigames_4ITB_2324\\Minigames_4ITB_2324\\bin\\Debug\\net6.0-windows\\ClickMinigameLib2.dll";
+            Assembly assembly = Assembly.LoadFile(filename);
+            
+            foreach(var typ in assembly.GetTypes())
+            {
+                if(typ.IsAssignableTo(typeof(IMinigame)))
+                {
+                    MessageBox.Show(typ.Name);
+                    minigames.Add(typ);
+                }
+            }
         }
 
         private void StartRound()
@@ -80,7 +100,7 @@ namespace Minigames_4ITB_2324
         private IMinigame GetRandomMinigame()
         {
             Random random = new Random();
-            int r = 2;//random.Next(0, minigames.Count);
+            int r = minigames.Count - 1;//random.Next(0, minigames.Count);
             var minigame = Activator.CreateInstance(minigames[r]) as IMinigame;
             return minigame;
         }
