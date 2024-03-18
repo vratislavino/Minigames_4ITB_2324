@@ -53,7 +53,7 @@ namespace Minigames_4ITB_2324
 
         private void LoadMinigameFromDll()
         {
-            
+            //
         }
 
         private void StartRound()
