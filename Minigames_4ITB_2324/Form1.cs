@@ -53,17 +53,7 @@ namespace Minigames_4ITB_2324
 
         private void LoadMinigameFromDll()
         {
-            string filename = "C:\\Users\\richa\\prográmko\\visual studio code\\AI\\Minigames_4ITB_2324\\ClickMinigameLib2\\ClickMinigameLib2.dll";
-            // Assembly assembly = Assembly.LoadFile(filename);
-
-            //  foreach(var typ in assembly.GetTypes())
-            //   {
-            // if (typ.IsAssignableTo(typeof(IMinigame)))
-            // {
-            // MessageBox.Show(typ.Name);
-            // minigames.Add(typ);
-            //}
-            //}
+            
         }
 
         private void StartRound()
